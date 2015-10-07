@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd">
+	<tlib-version>1.0</tlib-version>
+	<short-name>sf</short-name>
+	<uri>http://www.softfeeder.com/tags/compress</uri>
+
+	<tag>
+		<name>add</name>
+		<tag-class>com.softfeeder.compressor.AssetsCollector</tag-class>
+		<body-content>shared</body-content>
+		
+		<attribute>
+			<name>src</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		
+		<attribute>
+			<name>collection</name>
+			<required>false</required>
+		</attribute>
+
+	</tag>
+
+	<tag>
+		<name>present</name>
+		<tag-class>com.softfeeder.compressor.AssetsPresenter</tag-class>
+		<body-content>shared</body-content>
+
+		<attribute>
+			<name>type</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>collection</name>
+			<required>false</required>
+		</attribute>
+
+		<attribute>
+			<name>debug</name>
+			<required>false</required>
+		</attribute>
+
+	</tag>
+
+</taglib>
