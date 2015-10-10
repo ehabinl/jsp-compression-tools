@@ -21,9 +21,12 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package com.softfeeder.compressor;
+package com.softfeeder.compressor.filters.wrapper;
 
-import java.util.ResourceBundle;
+import java.io.IOException;
+import java.util.zip.DeflaterOutputStream;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 
@@ -31,29 +34,30 @@ import java.util.ResourceBundle;
  * @since 1.0
  *
  */
-public class Constants {
-	
-	// -- context init time
-	public static final long START_TIME = System.currentTimeMillis();
+public class DeflateResponseStream extends CompressedResponseStream {
 
-	public static final String TAG_LIB_MAP_VALUE_KEY = "SOFTFEEDER_TAGLIB_COMPRESS_APPENDER_VALUE";
-	public static final String PROPERTYFILE_NAME = "softfeeder_compress_taglib";
-	public static final String PROPERTYFILE_LOCATION = "softfeeder.bundle.location";
-	public static final String BASE_PATH_MIN;
-	public static final String BASE_PATH;
-	public static final String TARGET_URL;
-	public static final boolean DEBUG_MOOD;
+	final protected DeflaterOutputStream deflateStream;
 
-	static {
-		String platform = System.getProperty(Constants.PROPERTYFILE_LOCATION) == null ? "config" : System
-				.getProperty(Constants.PROPERTYFILE_LOCATION);
+	/**
+	 * Constructor
+	 * 
+	 * @param response
+	 * @throws IOException
+	 */
+	public DeflateResponseStream(HttpServletResponse response) throws IOException {
+		super(response);
+		this.deflateStream = new DeflaterOutputStream(baos);
+	}
 
-		ResourceBundle rs = ResourceBundle.getBundle(platform + "/" + Constants.PROPERTYFILE_NAME);
-		BASE_PATH_MIN = rs.getString("softfeeder.compress.basePathMin");
-		BASE_PATH = rs.getString("softfeeder.compress.basePath");
-		TARGET_URL = rs.getString("softfeeder.compress.targetUrl");
-		DEBUG_MOOD = Boolean.valueOf(rs.getString("softfeeder.compress.debug"));
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.softfeeder.compressor.filters.wrapper.CompressedResponseStream#
+	 * getCompressedStream()
+	 */
+	@Override
+	public DeflaterOutputStream getCompressedStream() {
+		return this.deflateStream;
 	}
 
 }

@@ -21,7 +21,7 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package com.softfeeder.compressor;
+package com.softfeeder.compressor.filters;
 
 import java.io.CharArrayWriter;
 import java.io.IOException;
@@ -43,6 +43,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 
 import com.googlecode.htmlcompressor.compressor.HtmlCompressor;
+import com.softfeeder.compressor.Constants;
 
 /**
  * 
@@ -50,13 +51,15 @@ import com.googlecode.htmlcompressor.compressor.HtmlCompressor;
  * @since 1.0
  *
  */
-public class HtmlCompressorFilter implements Filter {
+public class HtmlCompactorFilter implements Filter {
 
-	private static final Logger LOG = Logger.getLogger(HtmlCompressorFilter.class.getName());
+	private static final Logger LOG = Logger.getLogger(HtmlCompactorFilter.class.getName());
 
 	/*
 	 * (non-Javadoc)
-	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse, javax.servlet.FilterChain)
+	 * 
+	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
+	 * javax.servlet.ServletResponse, javax.servlet.FilterChain)
 	 */
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,

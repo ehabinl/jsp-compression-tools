@@ -21,18 +21,44 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package com.softfeeder.compressor;
+package com.softfeeder.compressor.filters.wrapper;
 
-public enum FileType {
-	CSS("css"), JS("js");
+import java.io.IOException;
+import java.util.zip.DeflaterOutputStream;
+import java.util.zip.GZIPOutputStream;
 
-	private String extention;
+import javax.servlet.http.HttpServletResponse;
 
-	FileType(String extension) {
-		this.extention = extension;
+/**
+ * 
+ * @author ehab al-hakawati
+ * @since 1.0
+ *
+ */
+public class GZIPResponseStream extends CompressedResponseStream {
+
+	final private GZIPOutputStream gzipStream;
+
+	/**
+	 * Constructor
+	 * 
+	 * @param response
+	 * @throws IOException
+	 */
+	public GZIPResponseStream(HttpServletResponse response) throws IOException {
+		super(response);
+		this.gzipStream = new GZIPOutputStream(this.baos);
 	}
 
-	public String getExtention() {
-		return this.extention;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.softfeeder.compressor.filters.wrapper.CompressedResponseStream#
+	 * getCompressedStream()
+	 */
+	@Override
+	public DeflaterOutputStream getCompressedStream() {
+		return this.gzipStream;
 	}
+
 }

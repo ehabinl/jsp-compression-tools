@@ -8,15 +8,15 @@
 
 	<tag>
 		<name>add</name>
-		<tag-class>com.softfeeder.compressor.AssetsCollector</tag-class>
+		<tag-class>com.softfeeder.compressor.taglib.AssetsCollector</tag-class>
 		<body-content>shared</body-content>
-		
+
 		<attribute>
 			<name>src</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-		
+
 		<attribute>
 			<name>collection</name>
 			<required>false</required>
@@ -26,7 +26,7 @@
 
 	<tag>
 		<name>present</name>
-		<tag-class>com.softfeeder.compressor.AssetsPresenter</tag-class>
+		<tag-class>com.softfeeder.compressor.taglib.AssetsPresenter</tag-class>
 		<body-content>shared</body-content>
 
 		<attribute>
